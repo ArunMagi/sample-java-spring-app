@@ -32,6 +32,7 @@ pipeline {
         }
         stage ('run the container') {
             steps {
+                sh 'docker rm -f app'
                 sh 'docker run -d  --name app -p 8082:8080 arunmagi/app'
             }
         }

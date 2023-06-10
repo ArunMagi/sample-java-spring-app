@@ -9,4 +9,5 @@ run the code
 
 java -jar target/*.jar
 
-hello
+
+testing

@@ -8,5 +8,3 @@ mvn clean install
 run the code
 
 java -jar target/*.jar
-
-hello

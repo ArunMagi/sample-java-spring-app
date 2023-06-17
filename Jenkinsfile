@@ -36,5 +36,6 @@ pipeline {
                 sh 'docker run -d  --name app -p 8082:8080 arunmagi/app'
             }
         }
+        stage
     }
 }

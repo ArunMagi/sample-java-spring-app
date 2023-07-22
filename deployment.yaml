@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: java-app
-        image: arunmagi/java-app
+        image: arunmagi/12-app
         ports:
         - containerPort: 8080
 ---

@@ -12,6 +12,7 @@ node {
         sh "docker build -t test-app ."
     }
     stage ("docker-container"){
+        sh "docker rm -f test-app"
         sh "docker run -d --name test-app -p 8084:8080 test-app"
     }
 }

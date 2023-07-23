@@ -1,41 +1,17 @@
-pipeline {
-    agent any 
-    stages {
-        stage ('cleaning') {
-            steps {
-                cleanWs()
-            }
-        }
-        stage  ("cloning"){
-            steps{
-                git branch: 'main', url: 'https://github.com/ArunMagi/sample-spring-boot-java-docker-application.git'
-                sh 'ls -l'
-            }
-        }
-        stage ('complile') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage ('contaization') {
-            steps {
-                sh 'docker build -t app .'
-                sh 'docker images'
-            }
-        }
-        stage ('save the image') {
-            steps {
-                sh 'docker login -u arunmagi -p Arun@ak@99'
-                sh 'docker tag app arunmagi/app'
-                sh 'docker push arunmagi/app'
-            }
-        }
-        stage ('run the container') {
-            steps {
-                sh 'docker rm -f app'
-                sh 'docker run -d  --name app -p 8082:8080 arunmagi/app'
-            }
-        }
-        stage
+node {
+    stage ("clean") {
+        cleanWs()
+    }
+    stage ("clone") {
+        git branch: 'main', url: 'https://github.com/ArunMagi/sample-spring-boot-java-docker-application.git'
+    }
+    stage ("build"){
+        sh "mvn clean install"
+    }
+    stage ("docker-image") {
+        sh "docker build -t test-app ."
+    }
+    stage ("docker-container"){
+        sh "docker run -d --name test-app -p 8084:8080 test-app"
     }
 }

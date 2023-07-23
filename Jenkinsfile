@@ -1,4 +1,4 @@
-node {
+node ("node-1") {
     stage ("clean") {
         cleanWs()
     }
